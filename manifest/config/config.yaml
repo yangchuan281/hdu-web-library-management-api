@@ -1,0 +1,20 @@
+server:
+  address: ":8000"
+  dumpRouterMap: true
+  routeOverWrite: true
+  accessLogEnabled: true
+  openapiPath: "/api.json"
+  swaggerPath: "/swagger"
+
+logger:
+  level: "all"
+  stdout: true
+
+database:
+  logger:
+    level: "all"
+    stdout: true
+
+  default:
+    link: "mysql:root:123456@tcp(127.0.0.1:3306)/library_management?charset=utf8mb4&parseTime=true&loc=Local"
+    debug: true

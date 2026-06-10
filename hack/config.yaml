@@ -1,0 +1,12 @@
+# GoFrame CLI configuration for code generation
+gfcli:
+  gen:
+    dao:
+      - link: "mysql:root:123456@tcp(127.0.0.1:3306)/library_management?charset=utf8mb4&parseTime=true&loc=Local"
+        tables: "users,books,borrows,verification_codes"
+        path: "./internal"
+        group: "default"
+        prefix: ""
+        removePrefix: ""
+        descriptionTag: true
+        noModelComment: true
