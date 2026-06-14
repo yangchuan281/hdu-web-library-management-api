@@ -587,3 +587,70 @@ GoFrame框架自动生成的（不用说是自己写的）：
 ### 问题5：npm run dev 报错
 原因：没有安装依赖
 解决：先执行 npm install，再执行 npm run dev
+
+---
+
+## 快速启动（给开发者）
+
+以下步骤帮你把项目在**自己电脑**上跑起来。
+
+### 1. 环境要求
+
+- [Go](https://go.dev/dl/) 1.23+
+- [MySQL](https://dev.mysql.com/downloads/mysql/) 8.0+
+- [Node.js](https://nodejs.org/)（用于前端构建）
+
+### 2. 克隆代码
+
+`ash
+git clone https://github.com/yangchuan281/library-management-api.git
+cd library-management-api
+`
+
+### 3. 创建数据库
+
+登录你的 MySQL 并执行：
+
+`sql
+CREATE DATABASE IF NOT EXISTS library_management CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+`
+
+然后导入建表脚本：
+`ash
+mysql -u root -p library_management < manifest/sql/create.sql
+`
+
+### 4. 配置数据库连接
+
+修改 manifest/config/config.yaml，把用户名和密码换成你自己的：
+
+`yaml
+database:
+  default:
+    link: "mysql:你的用户名:你的密码@tcp(127.0.0.1:3306)/library_management?charset=utf8mb4&parseTime=true&loc=Local"
+`
+
+### 5. 启动后端
+
+`ash
+go mod tidy
+go run main.go
+`
+
+后端将在 http://localhost:8000 启动。
+
+### 6. 启动前端
+
+新开一个终端：
+
+`ash
+cd library-frontend
+npm install
+npm run dev
+`
+
+前端将在 http://localhost:5173 启动，浏览器访问即可使用。
+
+### 7. 注册管理员账号
+
+启动后访问前端页面，注册第一个用户即可作为管理员使用系统。
